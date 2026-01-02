@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manas Dhanpawde - Portfolio</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --primary: #7000FF;
+            --secondary: #00F2FE;
+            --dark: #0F0F0F;
+            --darker: #090909;
+            --light: #ffffff;
+            --accent: #FF00E5;
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header Styles */
+        header {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-content {
+            text-align: center;
+            position: relative;
+            z-index: 2;
+        }
+
+        .header-content h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--light);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            animation: glow 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px var(--primary), 0 0 20px var(--primary);
+            }
+            to {
+                text-shadow: 0 0 10px #fff, 0 0 20px var(--secondary), 0 0 30px var(--secondary);
+            }
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .contact-info a {
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            background: rgba(255,255,255,0.1);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        /* Section Styles */
+        section {
+            background: linear-gradient(135deg, rgba(112, 0, 255, 0.1), rgba(0, 242, 254, 0.1));
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            border: 1px solid rgba(255,255,255,0.1);
+            transform-origin: center;
+            transition: all 0.3s ease;
+        }
+
+        section:hover {
+            transform: scale(1.01);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.3);
+        }
+
+        h2 {
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 1.5rem;
+            font-size: 2rem;
+            position: relative;
+            display: inline-block;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        section:hover h2::after {
+            transform: scaleX(1);
+        }
+
+        /* Education Styles */
+        .education-item {
+            margin-bottom: 1.5rem;
+            padding: 1rem;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .education-item:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateX(10px);
+        }
+
+        .education-item h3 {
+            color: var(--secondary);
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item ul {
+            list-style-type: none;
+            padding-left: 1rem;
+        }
+
+        .education-item li {
+            margin-bottom: 0.5rem;
+            position: relative;
+        }
+
+        .education-item li::before {
+            content: '▹';
+            color: var(--secondary);
+            position: absolute;
+            left: -1rem;
+        }
+
+        /* Projects Styles */
+        .project-item {
+            margin-bottom: 1.5rem;
+            padding: 1.5rem;
+            background: rgba(0,0,0,0.2);
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-item:hover {
+            transform: translateY(-5px);
+            background: rgba(0,0,0,0.3);
+        }
+
+        .project-item h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+        }
+
+        .project-item p {
+            margin-bottom: 1rem;
+        }
+
+        .technologies {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .tech-tag {
+            background: rgba(112, 0, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Skills Styles */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .skill-category {
+            background: rgba(0,0,0,0.2);
+            padding: 1.5rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-category:hover {
+            transform: translateY(-5px);
+            background: rgba(0,0,0,0.3);
+        }
+
+        .skill-category h3 {
+            color: var(--secondary);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .skill-item {
+            background: rgba(112, 0, 255, 0.2);
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.9rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .skill-item:hover {
+            background: rgba(112, 0, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Particles */
+        .particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            background: var(--secondary);
+            border-radius: 50%;
+            opacity: 0.3;
+            animation: float 15s infinite linear;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) translateX(0);
+            }
+            50% {
+                transform: translateY(-100vh) translateX(100vw);
+            }
+            100% {
+                transform: translateY(-200vh) translateX(0);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .contact-info {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .header-content h1 {
+                font-size: 2rem;
+            }
+
+            .skills-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="particles" id="particles"></div>
+
+    <header>
+        <div class="container header-content">
+            <h1>Manas Dhanpawde</h1>
+            <div class="contact-info">
+                <a href="tel:8600732693"><i class="fas fa-phone"></i> 8600732693</a>
+                <a href="mailto:mdhanpawde@gmail.com"><i class="fas fa-envelope"></i> mdhanpawde@gmail.com</a>
+                <a href="#"><i class="fas fa-map-marker-alt"></i> Pune</a>
+                <a href="https://www.linkedin.com/in/manas-dhanpawde-104911286/"> Linkedin</a>
+                <a href="https://github.com/ManasDhanpawde"> Github</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="container">
+        <section class="summary">
+            <h2>Summary</h2>
+            <p>Computer Science undergraduate specializing in Artificial Intelligence and Machine Learning. Passionate about developing intelligent systems, predictive models, and data-driven solutions. Strong foundation in programming, data structures, and AI/ML frameworks such as TensorFlow, scikit-learn, and Python. Experienced in working on academic and personal projects involving machine learning, natural language processing, and data analysis. Eager to contribute to innovative, impactful projects and continuously expand expertise in AI-driven technologies and real-world problem-solving.</p>
+        </section>
+        <section class="projects">
+            <h2>Projects</h2>
+            
+
+            <div class="project-item">
+                <h3>Online Travel Agency</h3>
+                <p>Developed an online travel agency for flight, train, and cab bookings with database integration and real-time updates.</p>
+                <div class="technologies">
+                    <span class="tech-tag">Java</span>
+                    <span class="tech-tag">MySQL</span>
+                    <span class="tech-tag">Swing GUI</span>
+                    <span class="tech-tag">JDBC</span>
+                </div>
+            </div>
+            <div class="project-item">
+                <h3>Waste Collection Drive Website</h3>
+                <p>Designed and developed an informational website for Pehel 2024, promoting e-waste and plastic waste management for a city-wide collection drive by Janwani NGO in Pune.</p>
+                <div class="technologies">
+                    <span class="tech-tag">HTML</span>
+                    <span class="tech-tag">CSS</span>
+                </div>
+            </div>
+            <div class="project-item">
+                <h3>Movie Industry Revenue Analytics & Success Prediction</h3>
+                <p>Analyzed multi-source movie data to visualize industry trends, predict box office success using machine learning, and uncover audience-driven film archetypes through clustering and BI dashboards.</p>
+                <div class="technologies">
+                    <span class="tech-tag">Pandas</span>
+                    <span class="tech-tag">Seaborn</span>
+                    <span class="tech-tag">Power BI</span>
+                    <span class="tech-tag">Decision Tree</span>
+                    <span class="tech-tag">Random Forest</span>
+                    <span class="tech-tag">K-Means Clustering</span>
+                    <span class="tech-tag">PCA</span>
+                    <span class="tech-tag">SQLite</span>
+                </div>
+            </div>
+            <div class="project-item">
+                <h3>AI-Enabled Maternal Care and Nurse Support Mobile Application</h3>
+                <p>Developed a dual-purpose mobile application connecting expecting mothers and nurses with integrated monitoring, education, and AI-based pregnancy risk prediction.</p>
+                <div class="technologies">
+                    <span class="tech-tag">React Native</span>
+                    <span class="tech-tag">Expo</span>
+                    <span class="tech-tag">NodeJS</span>
+                    <span class="tech-tag">Express</span>
+                    <span class="tech-tag">REST API</span>
+                    <span class="tech-tag">JWT</span>
+                    <span class="tech-tag">Gemini API</span>
+                    <span class="tech-tag">Machine Learning</span>
+                </div>
+            </div>
+            <div class="project-item">
+                <h3>Customer Churn Production using Machine Learning</h3>
+                <p>Built a customer churn prediction model using chi-squared feature selection, SMOTEENN for class imbalance, and multiple classifiers, achieving 93% accuracy with a tuned Random Forest model.</p>
+                <div class="technologies">
+                    <span class="tech-tag">Pandas & Numpy</span>
+                    <span class="tech-tag">Scikit-Learn</span>
+                    <span class="tech-tag">SMOTEENN</span>
+                    <span class="tech-tag">Chi-squared Feature Selection</span>
+                    <span class="tech-tag">Random Forest</span>
+                </div>
+            </div>
+            <div class="project-item">
+                <h3>RAG QnA Bot & LLM Evaluation Dashboard</h3>
+                <p>Built a Retrieval-Augmented Generation QnA system with an integrated LLM validation mechanism and an interactive evaluation dashboard to analyze bias, accuracy, factual consistency, and semantic alignment of AI-generated responses.</p>
+                <div class="technologies">
+                    <span class="tech-tag">LangChain</span>
+                    <span class="tech-tag">FAISS</span>
+                    <span class="tech-tag">Groq</span>
+                    <span class="tech-tag">FAST API</span>
+                    <span class="tech-tag">Streamlit</span>
+                </div>
+            </div>
+            
+            <div class="project-item">
+                <h3>Smart Voting System</h3>
+                <p>Developed an IoT-based smart voting system where authenticated voters can vote and their vote will be registered directly on the cloud servers, eliminating vote counting hassles and polling booth security concerns.</p>
+                <div class="technologies">
+                    <span class="tech-tag">NodeMCU</span>
+                    <span class="tech-tag">RFID modules</span>
+                    <span class="tech-tag">I2C LCD</span>
+                    <span class="tech-tag">ThingSpeak</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="skills">
+            <h2>Skills & Technologies</h2>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Programming Languages</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">C++</span>
+                        <span class="skill-item">C</span>
+                        <span class="skill-item">Java</span>
+                        <span class="skill-item">Python</span>
+                        <span class="skill-item">SQL</span>
+                        <span class="skill-item">PL/SQL</span>
+                       
+                       
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Web Technologies and Frameworks</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">HTML</span>
+                        <span class="skill-item">CSS</span>
+                        <span class="skill-item">Javascript</span>
+                        <span class="skill-item">React</span>
+                        <span class="skill-item">React Native</span>
+                        <span class="skill-item">Expo</span> 
+                        <span class="skill-item">MongoDB</span>    
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Data Science & ML</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Pandas</span>
+                        <span class="skill-item">Numpy</span>
+                        <span class="skill-item">Scikit-Learn</span>
+                        <span class="skill-item">Matplotlib</span> 
+                        <span class="skill-item">Seaborn</span>
+                        <span class="skill-item">EDA</span>
+                        <span class="skill-item">Supervised and Unsupervised Learning</span>
+                    </div>
+                </div>
+                <div class="skill-category">
+                    <h3>Software</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Microsoft Excel</span>
+                        <span class="skill-item">Power BI</span>
+                        <span class="skill-item">Weka</span> 
+                        <span class="skill-item">Hadoop</span>
+                        <span class="skill-item">Hive</span>  
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Courses</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Java for real beginners (Udemy)</span>
+                        <span class="skill-item">Step-by-step Machine Learning with Python(Infosys Sprinboard)</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Soft Skills</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">Collaboration</span>
+                        <span class="skill-item">Creativity</span>
+                        <span class="skill-item">Teamwork</span>
+                    </div>
+                </div>
+
+                <div class="skill-category">
+                    <h3>Languages</h3>
+                    <div class="skill-list">
+                        <span class="skill-item">English</span>
+                        <span class="skill-item">Hindi</span>
+                        <span class="skill-item">Marathi</span>
+                    </div>
+                </div>
+            </div> 
+        </section>       
+        <section class="education">
+            <h2>Education</h2>
+            <div class="education-item">
+                <h3>Symbiosis Institute of Technology, Pune</h3>
+                <p><strong>B.Tech - Computer Science</strong> (2022 - 2026)</p>
+                <ul>
+                    <li>Expected Graduation: 2026</li>
+                    <li>Involved in Maths club, Matheletes</li>
+                    <li>Notable Grades: Sensors and Microcontrollers(A), Discrete Maths(A+), Statistics and Probability(A)</li>
+                    <li>Received O grade in Engineering Mathematics-3</li>
+                </ul>
+            </div>
+
+            <div class="education-item">
+                <h3>Suryadatta Junior College, Pune</h3>
+                <p><strong>12th Standard</strong> (2020 - 2022)</p>
+                <ul>
+                    <li>Academic Marks: 80%</li>
+                    <li>Secured 96 percentile in JEE Mains, 2022</li>
+                    <li>Secured 98.6 percentile in MHT-CET, 2022</li>
+                </ul>
+            </div>
+
+            <div class="education-item">
+                <h3>D.A.V Public School, Pune</h3>
+                <p><strong>10th Standard</strong> (2009 - 2020)</p>
+                <ul>
+                    <li>Academic Marks: 96.2%</li>
+                </ul>
+            </div>
+        </section>
+
+        
